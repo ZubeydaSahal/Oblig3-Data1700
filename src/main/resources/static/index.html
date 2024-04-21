@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="index2.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <h1 class="display-1">Bestill Kiinobiletter</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <form class="form">
+                <div class="form-group">
+                    <div id="film">Velg Film</div>
+
+                </div>
+                <div class="form-group">
+                    <label for="antall">Antall</label>
+                    <input type="text" id="antall" maxlength="2" size="1.5" class="form-group"/>
+                    <span id="feileantall" style="color: red"></span>
+                </div>
+                <div class="form-group">
+                    <label for="fornavn">Fornavn</label>
+                    <input type="text" class="form-control" id="fornavn"/>
+                    <span id="feilfornavn" style="color: red"></span>
+                </div>
+                <div class="form-group">
+                    <label for="etternavn">Etternavn</label>
+                    <input type="text" class="form-control" id="etternavn"/>
+                    <span id="feiletternavn" style="color: red"></span>
+                </div>
+                <div class="form-group">
+                    <label for="telefonnr">Telefonnr</label>
+                    <input type="text" class="form-control" id="telefonnr"/>
+                    <span id="feiltelefonnr" style="color: red"></span>
+                    <span id="feilvalideringtlf" style="color: red"></span>
+                </div>
+                <div class="form-group">
+                    <label for="epost">Epost</label>
+                    <input type="text" class="form-control" id="epost"/>
+                    <span id="feilepost" style="color: red"></span>
+                    <span id="feilvalideringepost" style="color: red"></span>
+                </div>
+            </form>
+            <button class="btn btn-primary" onclick="kjop()">Kjøp</button><br/>
+        </div>
+        <div class="col-md-8">
+            <h3>Biletter:</h3>
+            <div id="registrer" class="table-responsive" ></div>
+            <div id="feil"></div>
+            <button class="btn btn-danger" onclick="seltt()">Slett alle Biletter</button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
