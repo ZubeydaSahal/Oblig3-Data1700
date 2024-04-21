@@ -1,4 +1,4 @@
-CREATE TABLE biletter (
+CREATE TABLE Billett (
                         id INTEGER AUTO_INCREMENT NOT NULL,
                         film VARCHAR(255) NOT NULL,
                         antall VARCHAR(255) NOT NULL,

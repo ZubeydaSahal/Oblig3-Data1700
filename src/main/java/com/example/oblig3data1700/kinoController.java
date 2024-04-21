@@ -23,7 +23,7 @@ public class kinoController {
     }
 
     @PostMapping("/lagre")
-    public void LagreKunde(biletter innKunde, HttpServletResponse response) throws IOException {
+    public void LagreKunde(Billett innKunde, HttpServletResponse response) throws IOException {
 
        if (!rep.lagreKunde(innKunde)){
            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),
@@ -31,13 +31,32 @@ public class kinoController {
        }
 
     }
+    @GetMapping("/hentEnBillett")
+    public Billett henteEnBillett(int id,HttpServletResponse response ) throws IOException{
+        Billett enBillett=rep.henteEnBillett(id);
+        if (enBillett==null){
+            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB-prøb igjen senere");
+        }
+        return enBillett;
+    }
+
+    @PostMapping("/endre")
+    public void endre(Billett enBillett){
+        rep.endreEnBillett(enBillett);
+    }
+
+    @GetMapping("/slettEnBillett")
+    public void slettEnBillett(int id){
+        rep.slettEnBillett(id);
+    }
+
     @GetMapping("/hentalle")
-    public List<biletter> hentAlle(){
+    public List<Billett> hentAlle(){
         return rep.hentAllebilett();
     }
 
     @GetMapping("/slettAlle")
-    public void selttAlle(){
+    public void slettAlle(){
         rep.slettAllebilett();
     }
 

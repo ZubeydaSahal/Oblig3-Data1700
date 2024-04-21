@@ -11,53 +11,18 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="display-1">Bestill Kiinobiletter</h1>
+    <h1 class="display-1">Bestill Kinobiletter</h1>
     <div class="row">
-        <div class="col-md-4">
-            <form class="form">
-                <div class="form-group">
-                    <div id="film">Velg Film</div>
-
-                </div>
-                <div class="form-group">
-                    <label for="antall">Antall</label>
-                    <input type="text" id="antall" maxlength="2" size="1.5" class="form-group"/>
-                    <span id="feileantall" style="color: red"></span>
-                </div>
-                <div class="form-group">
-                    <label for="fornavn">Fornavn</label>
-                    <input type="text" class="form-control" id="fornavn"/>
-                    <span id="feilfornavn" style="color: red"></span>
-                </div>
-                <div class="form-group">
-                    <label for="etternavn">Etternavn</label>
-                    <input type="text" class="form-control" id="etternavn"/>
-                    <span id="feiletternavn" style="color: red"></span>
-                </div>
-                <div class="form-group">
-                    <label for="telefonnr">Telefonnr</label>
-                    <input type="text" class="form-control" id="telefonnr"/>
-                    <span id="feiltelefonnr" style="color: red"></span>
-                    <span id="feilvalideringtlf" style="color: red"></span>
-                </div>
-                <div class="form-group">
-                    <label for="epost">Epost</label>
-                    <input type="text" class="form-control" id="epost"/>
-                    <span id="feilepost" style="color: red"></span>
-                    <span id="feilvalideringepost" style="color: red"></span>
-                </div>
-            </form>
-            <button class="btn btn-primary" onclick="kjop()">Kjøp</button><br/>
-        </div>
         <div class="col-md-8">
-            <h3>Biletter:</h3>
+            <h3>Billetter:</h3>
             <div id="registrer" class="table-responsive" ></div>
-            <div id="feil"></div>
-            <button class="btn btn-danger" onclick="seltt()">Slett alle Biletter</button>
+            <a href="registrere.html" class="btn btn-primary">Registrer</a>
+            <button class="btn btn-danger" onclick="slettAlle()">Slett alle Billetter</button>
         </div>
     </div>
 </div>
-
+<br><br>
+<div id="feil"></div>
 
 </body>
 </html>

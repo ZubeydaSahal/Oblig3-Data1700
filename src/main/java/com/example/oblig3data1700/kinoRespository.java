@@ -16,6 +16,7 @@ public class kinoRespository {
     @Autowired
     private JdbcTemplate db; //db objektet blir mulig å accecere mot databasen
 
+
     private Logger logger= LoggerFactory.getLogger(kinoRespository.class);
 
 
@@ -33,8 +34,8 @@ public class kinoRespository {
     }
 
     //metode som skal lagre billetter
-    public boolean lagreKunde(biletter innKunde){
-        String sql = "INSERT INTO biletter(film,antall,fornavn,etternavn,telefonnr,epost) Values(?,?,?,?,?,?)";
+    public boolean lagreKunde(Billett innKunde){
+        String sql = "INSERT INTO Billett(film,antall,fornavn,etternavn,telefonnr,epost) Values(?,?,?,?,?,?)";
         try {
             db.update(sql, innKunde.getFilm(),innKunde.getAntall(),innKunde.getFornavn(),innKunde.getEtternavn(),
                     innKunde.getTelefonnr(),innKunde.getEpost());
@@ -44,22 +45,40 @@ public class kinoRespository {
             return false;
         }
 
+    }
 
+    public Billett henteEnBillett(int id){
+        String sql="SELECT * FROM Billett WHERE id=?";
+        List<Billett> enBillett=db.query(sql,new BeanPropertyRowMapper<>(Billett.class),id);
+        return enBillett.get(0);
+    }
+
+    public void endreEnBillett(Billett enBillett) {
+        String sql = "UPDATE Billett SET film=?,antall=?,fornavn=?,etternavn=?,telefonnr=?,epost=? WHERE id=?";
+        db.update(sql, enBillett.getFilm(), enBillett.getAntall(), enBillett.getFornavn(), enBillett.getEtternavn(),
+                enBillett.getTelefonnr(), enBillett.getEpost(), enBillett.getId());
+    }
+
+    public void slettEnBillett(int id){
+        String sql="DELETE FROM Billett WHERE id=?";
+        db.update(sql,id);
     }
 
 
     // metode som henter ut billetter som ligger i tabellen
-    public List<biletter> hentAllebilett(){
-        String sql="SELECT * FROM biletter";
-        List<biletter>alleKunder=db.query(sql, new BeanPropertyRowMapper(biletter.class));
+    public List<Billett> hentAllebilett(){
+        String sql="SELECT * FROM Billett";
+        List<Billett>alleKunder=db.query(sql, new BeanPropertyRowMapper(Billett.class));
         return alleKunder;
     }
     //metode som sletter billetter
 
     public void slettAllebilett(){
-        String sql="DELETE FROM biletter";
+        String sql="DELETE FROM Billett";
         db.update(sql);
     }
+
+
 
 
 
