@@ -16,7 +16,11 @@ function hentAlle(){
         }
         ut+="</table>";
         $("#registrer").html(ut);
-    })
+    }).fail(function (jqXHR){
+        const json=$.parseJSON(jqXHR.responseText);
+        $("#feil").html(json.message);
+    });
+
 }
 
 

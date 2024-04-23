@@ -7,7 +7,11 @@ $(function (){
 function hentAlleFilmer(){
     $.get("/hentFilmer", function (filmer){
         formaterData(filmer);
+    }).fail(function(jqXHR) {
+        const json = $.parseJSON(jqXHR.responseText);
+        $("#feil").html(json.message);
     });
+
 }
 
 function formaterData(filmer){
@@ -115,7 +119,7 @@ function endreBilett(){
         }).fail(function (jqXHR){
             const json=$.parseJSON(jqXHR.responseText);
             $("#feil").html(json.message);
-        })
+        });
 
         //istedet for å restarte veridene ka man sende bruken tilbake til index.htm
         window.location.href="index.html";

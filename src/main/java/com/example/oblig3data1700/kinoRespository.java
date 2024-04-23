@@ -50,34 +50,66 @@ public class kinoRespository {
 
     public Billett henteEnBillett(int id){
         String sql="SELECT * FROM Billett WHERE id=?";
-        List<Billett> enBillett=db.query(sql,new BeanPropertyRowMapper<>(Billett.class),id);
-        return enBillett.get(0);
+        try {
+            List<Billett> enBillett=db.query(sql,new BeanPropertyRowMapper<>(Billett.class),id);
+            return enBillett.get(0);
+        }catch (Exception e){
+            logger.error("Feil i ehtn en Billett"+ e);
+            return null;
+        }
+
     }
 
-    public void endreEnBillett(Billett enBillett) {
+    public boolean endreEnBillett(Billett enBillett) {
         String sql = "UPDATE Billett SET film=?,antall=?,fornavn=?,etternavn=?,telefonnr=?,epost=? WHERE id=?";
-        db.update(sql, enBillett.getFilm(), enBillett.getAntall(), enBillett.getFornavn(), enBillett.getEtternavn(),
-                enBillett.getTelefonnr(), enBillett.getEpost(), enBillett.getId());
+        try {
+            db.update(sql, enBillett.getFilm(), enBillett.getAntall(), enBillett.getFornavn(), enBillett.getEtternavn(),
+                    enBillett.getTelefonnr(), enBillett.getEpost(), enBillett.getId());
+            return true;
+        }catch (Exception e){
+            logger.error("Feil i endre en Billett"+ e);
+            return false;
+
+        }
+
     }
 
-    public void slettEnBillett(int id){
+    public boolean slettEnBillett(int id){
         String sql="DELETE FROM Billett WHERE id=?";
-        db.update(sql,id);
+        try {
+            db.update(sql,id);
+            return true;
+        }catch (Exception e){
+            logger.error("Feil i slett i slett en og en Billett"+ e);
+            return false;
+        }
+
     }
 
 
     // metode som henter ut billetter som ligger i tabellen
     public List<Billett> hentAllebilett(){
         String sql="SELECT * FROM Billett";
-        List<Billett>alleKunder=db.query(sql, new BeanPropertyRowMapper(Billett.class));
-        Collections.sort(alleKunder, new Sorter());
-        return alleKunder;
+        try {
+            List<Billett>alleKunder=db.query(sql, new BeanPropertyRowMapper(Billett.class));
+            Collections.sort(alleKunder, new Sorter());
+            return alleKunder;
+        }catch (Exception e){
+            return null;
+        }
     }
     //metode som sletter billetter
 
-    public void slettAllebilett(){
+    public boolean slettAllebilett(){
         String sql="DELETE FROM Billett";
-        db.update(sql);
+        try {
+            db.update(sql);
+            return true;
+        }catch (Exception e){
+            logger.error("Feil i seltt alle Billetter");
+            return false;
+        }
+
     }
 
 

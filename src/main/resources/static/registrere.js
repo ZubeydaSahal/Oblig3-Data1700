@@ -5,7 +5,10 @@ $(function (){
 function hentAlleFilmer(){
     $.get("/hentFilmer", function (filmer){
         formaterData(filmer);
-    });
+    }).fail(function (jqXHR){
+        const json=$.parseJSON(jqXHR.responseText);
+        $("#feil").html(json.message);
+    })
 }
 
 function formaterData(filmer){

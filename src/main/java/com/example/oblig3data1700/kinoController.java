@@ -18,8 +18,12 @@ public class kinoController {
 
 
     @GetMapping("/hentFilmer")
-    public List<Film> hentFilmer(){
-        return rep.hentAlleFilmer();
+    public List<Film> hentFilmer(HttpServletResponse response)throws IOException{
+        List<Film> enFilm=rep.hentAlleFilmer();
+        if (enFilm==null){
+            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB-prøv igjen senere");
+        }
+        return enFilm;
     }
 
     @PostMapping("/lagre")
@@ -41,23 +45,36 @@ public class kinoController {
     }
 
     @PostMapping("/endre")
-    public void endre(Billett enBillett){
-        rep.endreEnBillett(enBillett);
+    public void endre(Billett enBillett,HttpServletResponse response)throws  IOException{
+        if (!rep.endreEnBillett(enBillett)){
+            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB prøv igjen senere");
+        }
     }
 
     @GetMapping("/slettEnBillett")
-    public void slettEnBillett(int id){
-        rep.slettEnBillett(id);
+    public void slettEnBillett(int id,HttpServletResponse response)throws  IOException{
+        if (!rep.slettEnBillett(id)){
+            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB prøv igjen senere");
+
+        }
     }
 
     @GetMapping("/hentalle")
-    public List<Billett> hentAlle(){
-        return rep.hentAllebilett();
+    public List<Billett> hentAlle(HttpServletResponse response)throws IOException{
+        List<Billett> enBillett= rep.hentAllebilett();
+        if (enBillett==null){
+            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"FEil i Db prøv igjen senere");
+        }
+        return enBillett;
     }
 
     @GetMapping("/slettAlle")
-    public void slettAlle(){
-        rep.slettAllebilett();
+    public void slettAlle(HttpServletResponse response)throws IOException{
+        if (!   rep.slettAllebilett()){
+            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Feil i DB prøv igjen senere");
+
+        }
+
     }
 
 
