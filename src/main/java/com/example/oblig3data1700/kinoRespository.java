@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -69,6 +70,7 @@ public class kinoRespository {
     public List<Billett> hentAllebilett(){
         String sql="SELECT * FROM Billett";
         List<Billett>alleKunder=db.query(sql, new BeanPropertyRowMapper(Billett.class));
+        Collections.sort(alleKunder, new Sorter());
         return alleKunder;
     }
     //metode som sletter billetter

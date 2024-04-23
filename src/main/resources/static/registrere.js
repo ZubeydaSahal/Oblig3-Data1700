@@ -59,14 +59,15 @@ function kjop(){
 
     // Validering av telefonnummer med regex
     const regexTlf = /^[0-9]{8}$/;
-    if (!regexTlf.test(telefonnr)) {
+    if (!regexTlf.test(telefonnr) && telefonnr !== "") {
         document.getElementById("feilvalideringtlf").innerHTML = "Telefonnummeret er ugyldig. Skriv inn et gyldig norsk telefonnummer på 8 siffer.";
         sjekk = true;
     }
 
+
     // Validering av e-post med regex
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regexEmail.test(epost)) {
+    if (!regexEmail.test(epost) && epost !== "") {
         document.getElementById("feilvalideringepost").innerHTML = "E-postadressen er ugyldig. Skriv inn en gyldig e-postadresse.";
         sjekk = true;
     }
@@ -97,7 +98,7 @@ function kjop(){
 
 
     }
-   
+
 
 
 }
