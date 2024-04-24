@@ -57,10 +57,6 @@ function endreBilett(){
     let sjekk=false;
 
     //sjekke om alle inputtene ikke er tomme, hvis de er sender ut feilmelding
-    if (document.getElementById("film").value===""){
-        document.getElementById("feilfilm").innerHTML="Velg en film";
-        sjekk=true;
-    }
 
     if (document.getElementById("antall").value===""){
         document.getElementById("feileantall").innerHTML="Skriv inn Antall biletter";

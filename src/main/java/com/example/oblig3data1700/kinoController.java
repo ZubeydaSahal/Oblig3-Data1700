@@ -79,9 +79,3 @@ public class kinoController {
 
 
 }
-
-//List<film> listMedFilmer=new ArrayList<>();
-//        listMedFilmer.add(new film("Barbie"));
-//        listMedFilmer.add(new film("Black panther"));
-//        listMedFilmer.add(new film("the rookie"));
-//        return listMedFilmer;
